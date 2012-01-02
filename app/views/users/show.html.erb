@@ -1,0 +1,62 @@
+<p>
+  <b>Username:</b>
+  <%=h @user.login %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @user.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @user.email %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %>
+<%= link_to 'Delete Account', @user, :confirm => 'Are you sure?  Your account will be deleted forever.', :method => :delete %>
+
+
+
+<%# ====================================================== %>
+<h1>Your shows</h1>
+
+<table>
+  	<tr>
+    	<th>Show</th>
+		<th>Season</th>
+		<th>Episode</th>
+  	</tr>
+
+<% @user.shows.each do |show| %>
+  	<tr>
+    	<td><%= link_to show.title, show %></td>
+		<% show.seasons.each do |season| %>
+		<tr>
+			<td></td><td><%= link_to "Season " + season.number.to_s, season %></td>
+			<% season.episodes.each do |episode| %>
+			
+			<%# if !episode.watcheds.nil? %>
+			<!--<tr class='watched_bold'>-->
+			<%# else %>
+			<tr>
+			<%# end %>
+				<td></td><td></td>
+				<td><%= link_to episode.number, episode %></td>
+				<td><%=h episode.title %></td>
+			<!--	<% @watcheds.each do |w| %>
+					<% if w == episode.watcheds %>
+				<td><%= link_to 'Watched', watched_episode_path(episode), :method => :put %></td>
+					<% end %>
+				<% end %>-->
+			</tr>
+			<% end %>
+		</tr>
+		<% end %>
+	</tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Add show', addshow_users_path, :method => :get %>

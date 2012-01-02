@@ -1,0 +1,27 @@
+<h1>Listing seasons</h1>
+
+<table>
+  <tr>
+    <th>Link</th>
+    <th>Number</th>
+	<th>Show</th>
+	<th>Episodes</th>
+  </tr>
+
+<% @seasons.each do |season| %>
+  <tr>
+    <td><%=h season.link %></td>
+    <td><%=h season.number %></td>
+    <td><%=h season.show.title %></td>
+	<td><%=h season.episodes.size %></td>
+	<% if !@current_user.administrator.nil? %>
+	<td><%= link_to 'Add Episode', addepisode_season_path(season), :method => :put %></td>
+    <td><%= link_to 'Show', season %></td>
+    <td><%= link_to 'Edit', edit_season_path(season) %></td>
+    <td><%= link_to 'Destroy', season, :confirm => 'Are you sure?', :method => :delete %></td>
+	<% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />

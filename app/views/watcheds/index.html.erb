@@ -1,0 +1,22 @@
+<h1>Listing watcheds</h1>
+
+<table>
+  <tr>
+    <th>Rank</th>
+    <th>Watched</th>
+  </tr>
+
+<% @watcheds.each do |watched| %>
+  <tr>
+    <td><%=h watched.rank %></td>
+    <td><%=h watched.watched %></td>
+<% if !@current_user.administrator.nil? %>
+    <td><%= link_to 'Show', watched %></td>
+    <td><%= link_to 'Edit', edit_watched_path(watched) %></td>
+    <td><%= link_to 'Destroy', watched, :confirm => 'Are you sure?', :method => :delete %></td>
+<% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />

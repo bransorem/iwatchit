@@ -1,0 +1,20 @@
+<h1>Select a show</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Link</th>
+    <th>Description</th>
+  </tr>
+
+<% @shows.each do |show| %>
+  <tr>
+    <td><%=h show.title %></td>
+    <td><%=h show.link %></td>
+    <td><%=h show.description %></td>
+    <td><%= link_to 'Add', add_show_path(show), :method => :put %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

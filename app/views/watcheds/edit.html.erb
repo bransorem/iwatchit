@@ -1,0 +1,20 @@
+<h1>Editing watched</h1>
+
+<% form_for(@watched) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :rank %><br />
+    <%= f.text_field :rank %>
+  </p>
+  <p>
+    <%= f.label :watched %><br />
+    <%= f.check_box :watched %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @watched %> |
+<%= link_to 'Back', watcheds_path %>

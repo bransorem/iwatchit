@@ -1,0 +1,46 @@
+<p>
+  <b>Title:</b>
+  <%=h @show.title %>
+</p>
+
+<p>
+  <b>Link:</b>
+  <%=h @show.link %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @show.description %>
+</p>
+
+<% if !@current_user.administrator.nil? %>
+<%= link_to 'Edit', edit_show_path(@show) %> |
+<%= link_to 'Back', shows_path %>
+<% end %>
+
+
+<%# =================================================================== %>
+<h1>Listing seasons</h1>
+
+<table>
+  <tr>
+    <th>Number</th>
+	<th>Episodes</th>
+  </tr>
+
+<% @show.seasons.each do |season| %>
+  <tr>
+    <td><%= link_to season.number, season %></td>
+	<td><%=h season.episodes.size %></td>
+	<% if !@current_user.administrator.nil? %>
+	<td><%= link_to 'Add Episode', addepisode_season_path(season), :method => :put %></td>
+	<% end %>
+    <!--<td><%= link_to 'Edit', edit_season_path(season) %></td>
+    <td><%= link_to 'Destroy', season, :confirm => 'Are you sure?', :method => :delete %></td> -->
+  </tr>
+<% end %>
+</table>
+
+<% if !@current_user.administrator.nil? %>
+<p><%= link_to 'Add Season', addseason_show_path(@show), :method => :put %></p>
+<% end %>

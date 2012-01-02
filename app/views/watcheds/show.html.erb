@@ -1,0 +1,20 @@
+<p>
+  <b>Rank:</b>
+  <%=h @watched.rank %>
+</p>
+
+<p>
+  <b>Watched:</b>
+  <%=h @watched.watched %>
+</p>
+
+<p>
+	<%=h @watched.episode.title %>
+</p>
+<p>
+	<%=h @watched.user.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_watched_path(@watched) %> |
+<%= link_to 'Back', watcheds_path %>

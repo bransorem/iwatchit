@@ -1,0 +1,46 @@
+<p>
+  <b>Link:</b>
+  <%=h @season.link %>
+</p>
+
+<p>
+  <b>Number:</b>
+  <%=h @season.number %>
+</p>
+
+<% if !@current_user.administrator.nil? %>
+
+<%= link_to 'Edit', edit_season_path(@season) %> |
+<%= link_to 'Back', seasons_path %>
+
+<% end %>
+
+<%# ===================================================== %>
+
+<h1>Listing episodes</h1>
+
+<table>
+  <tr>
+	<th>Episode</th>
+	<th>Air date</th>
+    <th>Title</th>
+    <th>Link</th>
+    <th>Description</th>
+	<th>Show</th>
+  </tr>
+
+<% @season.episodes.each do |episode| %>
+  <tr>
+	<td><%=h episode.number %></td>
+	<td><%=h episode.air_date %></td>
+    <td><%= link_to episode.title, episode %></td>
+    <td><%= link_to 'IMDB Link', episode.link %></td>
+    <td><%=h episode.description %></td>
+	<td><%= link_to episode.season.show.title, episode.season.show %></td>
+<% if !@current_user.administrator.nil? %>
+    <td><%= link_to 'Edit', edit_episode_path(episode) %></td>
+    <td><%= link_to 'Destroy', episode, :confirm => 'Are you sure?', :method => :delete %></td>
+<% end %>
+  </tr>
+<% end %>
+</table>

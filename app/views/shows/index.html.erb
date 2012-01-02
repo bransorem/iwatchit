@@ -1,0 +1,30 @@
+<h1>Listing shows</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Link</th>
+    <th>Description</th>
+	<th>Seasons</th>
+  </tr>
+
+<% @shows.each do |show| %>
+  <tr>
+    <td><%= link_to show.title, show %></td>
+    <td><%=h show.link %></td>
+    <td><%=h show.description %></td>
+	<td><%=h show.seasons.size %></td>
+ 	<!--<td><%= link_to 'Edit', edit_show_path(show) %></td>
+	<td><%= link_to 'Destroy', show, :confirm => 'Are you sure?', :method => :delete %></td>-->
+	<% if !@current_user.administrator.nil? %>
+	<td><%= link_to 'Add Season', addseason_show_path(show), :method => :put %></td>
+	<% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<% if !@current_user.administrator.nil? %>
+<%= link_to 'New show', new_show_path %>
+<% end %>

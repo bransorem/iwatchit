@@ -1,0 +1,19 @@
+<h1>New watched</h1>
+
+<% form_for(@watched) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :rank %><br />
+    <%= f.text_field :rank %>
+  </p>
+  <p>
+    <%= f.label :watched %><br />
+    <%= f.check_box :watched %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', watcheds_path %>
